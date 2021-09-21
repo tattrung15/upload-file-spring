@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  server:
+    container_name: upload-file-server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      - PORT=80
+      - MAX_FILE_SIZE=5MB
+      - MAX_REQUEST_SIZE=10MB
+      - STORAGE_LOCATION=upload-dir
+    ports:
+      - 80:80
+    volumes:
+      - ./data/upload-dir:/app/upload-dir
